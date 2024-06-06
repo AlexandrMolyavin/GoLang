@@ -22,7 +22,7 @@ const (
 	delay = time.Millisecond * 500
 )
 
-func crtlC() {
+func ctrlC() {
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGQUIT)
 	<-sigChan
@@ -60,7 +60,7 @@ func processOddNumbers(in <-chan int, out chan<- string) {
 
 func main() {
 
-	go crtlC()
+	go ctrlC()
 	rand.Seed(time.Now().UnixNano())
 	input := make(chan int)
 	output := make(chan string)
