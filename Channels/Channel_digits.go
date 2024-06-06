@@ -21,7 +21,7 @@ import (
 const (
 	delay = time.Millisecond * 500
 )
-
+// не работает, попробовал много вариантов, не могу понять в чем прооблема
 func ctrlC() {
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGQUIT)
