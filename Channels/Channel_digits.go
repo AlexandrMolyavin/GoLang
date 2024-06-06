@@ -26,8 +26,8 @@ func crtlC() {
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGQUIT)
 	<-sigChan
-	os.Exit(0)
 	fmt.Println("CTRL+C Pressed to interrupt")
+	os.Exit(0)
 }
 func generateNumbers(ch chan<- int) {
 	ticker := time.NewTicker(delay)
