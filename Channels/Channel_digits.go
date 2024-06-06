@@ -29,22 +29,6 @@ func crtlC() {
 	os.Exit(0)
 	fmt.Println("CTRL+C Pressed to interrupt")
 }
-func main() {
-
-	go crtlC()
-	rand.Seed(time.Now().UnixNano())
-	input := make(chan int)
-	output := make(chan string)
-
-	go generateNumbers(input)
-	go processEvenNumbers(input, output)
-	go processOddNumbers(input, output)
-
-	for result := range output {
-		fmt.Println(result)
-	}
-}
-
 func generateNumbers(ch chan<- int) {
 	ticker := time.NewTicker(delay)
 	defer ticker.Stop()
@@ -71,5 +55,21 @@ func processOddNumbers(in <-chan int, out chan<- string) {
 		if num%2 != 0 && num%3 == 0 {
 			out <- fmt.Sprintf("%d", num)
 		}
+	}
+}
+
+func main() {
+
+	go crtlC()
+	rand.Seed(time.Now().UnixNano())
+	input := make(chan int)
+	output := make(chan string)
+
+	go generateNumbers(input)
+	go processEvenNumbers(input, output)
+	go processOddNumbers(input, output)
+
+	for result := range output {
+		fmt.Println(result)
 	}
 }
