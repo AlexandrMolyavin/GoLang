@@ -18,7 +18,7 @@ func NewPgx() *Pgx {
 	dsn := url.URL{
 		Scheme: "postgres",
 		Host:   "localhost:5432",
-		User:   url.UserPassword("postgres", "030200zxgta5"),
+		User:   url.UserPassword("postgres", "#######"),
 		Path:   "Tasks",
 	}
 
